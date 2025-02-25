@@ -16,4 +16,8 @@ jobs:
            run : docker login --username '${{screts.DOCKER_USERNAME}}' --paswword '${{secrets.DOCKER_PASSWORD}}'
 
            -name: Push the image to the docker hub
+<<<<<<< HEAD
              run:  docker push '${{screts.DOCKER_USERNAME}}'/fastapi-docker:'${{github.sha}}'
+=======
+             run:  docker push '${{screts.Docker_USERNAME}}'/fastapi-docker:'${{github.sha}}'
+>>>>>>> 5123f4d5027c56213f321edd82bb97a02ced6ec6
