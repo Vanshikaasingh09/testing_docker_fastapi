@@ -2,7 +2,7 @@ name: FastAPI Docker Build and Push
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs: 
   build:
@@ -15,7 +15,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "vanshika002" --password-stdin
 
       - name: Build Docker image for FastAPI
-        run: docker build -t "vanshika002/fastapi-docker:${{ github.sha }}" .
+        run: docker build -t "vanshika002/testing_docker_fastapi:${{ github.sha }}" .
 
       - name: Push the image to Docker Hub
-        run: docker push "vanshika002/fastapi-docker:${{ github.sha }}"
+        run: docker push "vanshika002/testing_docker_fastapi:${{ github.sha }}"
