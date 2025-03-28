@@ -1,4 +1,4 @@
-name: Fast API docker build push
+name: FastAPI Docker Build and Push
 
 on:
   push:
@@ -8,13 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
+      - name: Checkout repository
+        uses: actions/checkout@v3 
 
-      - name: Build docker image for FastAPI
-        run: docker build -t '${{secrets.DOCKER_USERNAME}}'/fastapi-docker:'${{github.sha}}' .
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "vanshika002" --password-stdin
 
-      - name: Logging into Docker Hub
-        run: docker login --username '${{secrets.DOCKER_USERNAME}}' --password '${{secrets.DOCKER_PASSWORD}}'
+      - name: Build Docker image for FastAPI
+        run: docker build -t "vanshika002/fastapi-docker:${{ github.sha }}" .
 
       - name: Push the image to Docker Hub
-        run: docker push '${{secrets.DOCKER_USERNAME}}'/fastapi-docker:'${{github.sha}}'
+        run: docker push "vanshika002/fastapi-docker:${{ github.sha }}"
