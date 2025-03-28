@@ -7,13 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 
 
       - name: Log in to Docker Hub
-        run: echo "${{ DOCKER_ACCESS_TOKEN }}" | docker login -u "vanshika002" --password-stdin
+        run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "vanshika002" --password-stdin
 
       - name: Build Docker image
         run: docker build -t vanshika002/testing_docker_fastapi:latest .
